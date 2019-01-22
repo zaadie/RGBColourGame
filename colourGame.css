@@ -1,7 +1,7 @@
 body{
     background-color:#232323;
+    color: white;
 }
-
 
 
 .square {
@@ -12,5 +12,7 @@ body{
     margin: 1.66%;
 } 
 
-/* #container {
-} */
+#container {
+    margin: 0 auto;
+    max-width: 600px;
+}
