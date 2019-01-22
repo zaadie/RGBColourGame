@@ -15,7 +15,26 @@ var pickedColour = pickColour();
 var colourDisplay = document.getElementById("colourDisplay");
 var messageDisplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
+var resetButton = document.querySelector("#reset");
 
+// resetButton.addEventListener("click", function(){
+//     alert("Clicked Reset");
+// })
+
+resetButton.addEventListener("click", function(){
+    //generate all new colours
+    colours = generateRandomColours(6); 
+    //pick a new random colour from array
+    pickedColour = pickColour();
+    //change colourDisplay to match pickedColours
+    colourDisplay.textContent = pickedColour;
+    //change colours of squares
+    for(var i = 0; i < squares.length; i++){
+        squares[i].style.background = colours[i];    
+    }
+    messageDisplay.textContent = "";
+    h1.style.background = "#232323";
+})
 colourDisplay.textContent = pickedColour;
 
 //Loop through each square to give it the corresponding colour in 
