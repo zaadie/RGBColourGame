@@ -2,8 +2,6 @@ body{
     background-color:#232323;
     color: white;
 }
-
-
 .square {
     width: 30%;
     background: purple;
@@ -11,7 +9,6 @@ body{
     float: left;
     margin: 1.66%;
 } 
-
 #container {
     margin: 0 auto;
     max-width: 600px;
