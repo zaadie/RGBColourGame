@@ -1,13 +1,10 @@
-//implement design patterns 
-var game = {};
-
-game.init = function(){
-    setupModeButtons();
-    setupSquares();
-    reset();
-}
-
-game.init();
+// var game = {};
+// game.init = function(){
+//     setupModeButtons();
+//     setupSquares();
+//     reset();
+// }
+// game.init();
 
 var numSquares = 6;
 var colours = [];
@@ -27,7 +24,6 @@ function init(){
     //mode buttons event listener
     setupModeButtons();
     setupSquares();
-    
     //generates colours
     reset();
 }
@@ -45,7 +41,8 @@ function setupModeButtons() {
         })
     }
 }
-function setupSquares() {
+
+function setupSquares(){
     for(var i = 0; i < squares.length; i++){
         //add click listeners to squares
         squares[i].addEventListener("click", function(){
@@ -63,7 +60,7 @@ function setupSquares() {
                 messageDisplay.textContent = "Try Again";
             }
         });
-    } 
+    }
 }
 
 
