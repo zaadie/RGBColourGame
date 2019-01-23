@@ -11,7 +11,6 @@
 var numSquares = 6;
 var colours = generateRandomColours(numSquares);
 
-
 var squares = document.querySelectorAll(".square");
 var pickedColour = pickColour();
 var colourDisplay = document.getElementById("colourDisplay");
@@ -36,6 +35,7 @@ easyBtn.addEventListener("click", function(){
         }
     }
 })
+
 hardBtn.addEventListener("click", function(){
     easyBtn.classList.remove("selected");
     hardBtn.classList.add("selected");
@@ -67,7 +67,6 @@ colourDisplay.textContent = pickedColour;
 
 //Loop through each square to give it the corresponding colour in 
 // in the colours array
-
 for(var i = 0; i < squares.length; i++){
     //add initial colours to squares
     squares[i].style.background = colours[i];
