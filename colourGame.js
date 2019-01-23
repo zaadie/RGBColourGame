@@ -1,18 +1,7 @@
-// alert("working!");
-//hard coded array to initiate colours for squares
-// var colours = [
-// "rgb(255, 0, 0)",
-// "rgb(255, 255, 0)",
-// "rgb(0, 255, 0)",
-// "rgb(0, 255, 255)",
-// "rgb(0, 0, 255)",
-// "rgb(255, 0, 255)"
-// ]
 var numSquares = 6;
-var colours = generateRandomColours(numSquares);
-
+var colours = [];
+var pickedColour;
 var squares = document.querySelectorAll(".square");
-var pickedColour = pickColour();
 var colourDisplay = document.getElementById("colourDisplay");
 var messageDisplay = document.querySelector("#message");
 var h1 = document.querySelector("h1");
@@ -21,25 +10,51 @@ var easyBtn = document.querySelector("#easyBtn");
 var hardBtn = document.querySelector("#hardBtn");
 var modeButtons = document.querySelectorAll(".mode");
 
-for (var i = 0; i < modeButtons.length; i++){
-    modeButtons[i].addEventListener("click", function(){
-        modeButtons[0].classList.remove("selected");
-        modeButtons[1].classList.remove("selected");
-        this.classList.add("selected");
+init();
 
-        //Use tenary operator for to set numSquares variable
-        //figure out how many squares to show
-        this.textContent === "Easy" ? numSquares = 3: numSquares = 6;
-        //--------CODE CLEAN UP------------
-        // if (this.textContent === Easy) {
-        //     numSquares = 3;
-        // }
-        // else {
-        //     numSquares = 6;
-        // }
-        reset();
-    })
+function init(){
+    //mode buttons event listener
+    setupModeButtons();
+    setupSquares();
+    
+    //generates colours
+    reset();
 }
+
+function setupModeButtons() {
+    for (var i = 0; i < modeButtons.length; i++){
+        modeButtons[i].addEventListener("click", function(){
+            modeButtons[0].classList.remove("selected");
+            modeButtons[1].classList.remove("selected");
+            this.classList.add("selected");
+    
+            //Use tenary operator for to set numSquares variable
+            //figure out how many squares to show
+            this.textContent === "Easy" ? numSquares = 3: numSquares = 6;
+        })
+    }
+}
+function setupSquares() {
+    for(var i = 0; i < squares.length; i++){
+        //add click listeners to squares
+        squares[i].addEventListener("click", function(){
+            //grab colour of clicked square
+            var clickedColour = this.style.background;
+            //compare colour to pickedColour
+            // console.log(clickedColour, pickedColour);
+            if(clickedColour === pickedColour){
+                messageDisplay.textContent = "Correct";
+                resetButton.textContent ="Play Again?"
+                changeColours(clickedColour);
+                h1.style.background = clickedColour;
+            } else {
+                this.style.background="#232323";
+                messageDisplay.textContent = "Try Again";
+            }
+        });
+    } 
+}
+
 
 function reset(){
       //generate all new colours according to hard/easy mode
@@ -93,47 +108,11 @@ function reset(){
 // })
 
 resetButton.addEventListener("click", function(){
-    //generate all new colours according to hard/easy mode
-    colours = generateRandomColours(numSquares); 
-    //pick a new random colour from array
-    pickedColour = pickColour();
-    //change colourDisplay to match pickedColours
-    colourDisplay.textContent = pickedColour;
-    resetButton.textContent = "New Colours";
-
-    messageDisplay.textContent = "";
-
-    //change colours of squares
-    for(var i = 0; i < squares.length; i++){
-        squares[i].style.background = colours[i];    
-    }
-    h1.style.background = "steelblue";
+    reset();
 })
-colourDisplay.textContent = pickedColour;
 
 //Loop through each square to give it the corresponding colour in 
 // in the colours array
-for(var i = 0; i < squares.length; i++){
-    //add initial colours to squares
-    squares[i].style.background = colours[i];
-
-    //add click listeners to squares
-    squares[i].addEventListener("click", function(){
-        //grab colour of clicked square
-        var clickedColour = this.style.background;
-        //compare colour to pickedColour
-        // console.log(clickedColour, pickedColour);
-        if(clickedColour === pickedColour){
-            messageDisplay.textContent = "Correct";
-            resetButton.textContent ="Play Again?"
-            changeColours(clickedColour);
-            h1.style.background = clickedColour;
-        } else {
-            this.style.background="#232323";
-            messageDisplay.textContent = "Try Again";
-        }
-    });
-}
 
 function changeColours(colour){
      //loop through all squares
