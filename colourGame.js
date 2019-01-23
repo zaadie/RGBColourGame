@@ -1,3 +1,14 @@
+//implement design patterns 
+var game = {};
+
+game.init = function(){
+    setupModeButtons();
+    setupSquares();
+    reset();
+}
+
+game.init();
+
 var numSquares = 6;
 var colours = [];
 var pickedColour;
