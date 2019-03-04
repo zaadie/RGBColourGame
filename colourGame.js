@@ -82,7 +82,7 @@ function reset(){
               squares[i].style.display = "none";
           }
       }
-      h1.style.background = "steelblue";
+      h1.style.background = "#9D6A89";
 }
 
 //--------CODE CLEAN UP------------
